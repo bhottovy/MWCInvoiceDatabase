@@ -20,7 +20,7 @@ public class Person {
         this.lastName = lastName;
         this.address = address;
     }
-    //Changed
+
     public String getCode() {
         return this.code;
     }
