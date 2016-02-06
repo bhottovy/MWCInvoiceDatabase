@@ -13,11 +13,25 @@ public class DataConverter {
 	public static final String PRODUCT_FILE = "data/Products.dat";
 	
 	public static void main (String args[]) {
+
+		Map<Person, String> persons = null;
+		Map<Customer, String> customers = null;
+		Map<Product, String> products = null;
 		
-		Map<Person, String> persons = FileReader.importPersons(PERSON_FILE);
-		Map<Customer, String> customers = FileReader.importCustomers(CUSTOMER_FILE);
-		Map<Product, String> products = FileReader.importProducts(PRODUCT_FILE);
+		try {
+			persons = FileReader.importPersons(PERSON_FILE);
+			customers = FileReader.importCustomers(CUSTOMER_FILE);
+			products = FileReader.importProducts(PRODUCT_FILE);
+		} catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		
-		//FileWriter.exportData(persons, customers, products);
+		if(persons != null && customers != null && products != null) {
+			FileWriter.exportJSON(persons, customers, products);
+			FileWriter.exportXML(persons, customers, products);
+			System.out.println("Success!");
+		} else {
+			System.out.println("Error! Something went wrong.");
+		}
 	}
 }
