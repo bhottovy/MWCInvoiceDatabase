@@ -1,32 +1,27 @@
 package com.github.bhottovy.dataconverter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
-import Persons;
+import com.github.bhottovy.dataconverter.person.Customer;
+import com.github.bhottovy.dataconverter.person.Person;
+import com.github.bhottovy.dataconverter.product.Product;
 
 public class DataConverter {
-	public static void main (String args[]) throws FileNotFoundException{
+	
+	Map<Person, String> persons = new HashMap<Person, String>();
+	Map<Customer, String> customers = new HashMap<Customer, String>();
+	Map<Product, String> products = new HashMap<Product, String>();
+	
+	public static final String PERSON_FILE = "data/Persons.dat";
+	public static final String CUSTOMER_FILE = "data/Customers.dat";
+	public static final String PRODUCT_FILE = "data/Products.dat";
+	
+	public static void main (String args[]) {
 		
-		//Random Line of Code
-		
-		File file1 = new File("data/Customers.dat");
-		File file2 = new File("data/Persons.dat");
-		File file3 = new File("data/Products.dat");
-		Scanner FS = new Scanner(file1);
-		Scanner FS2 = new Scanner(file2);
-		Scanner FS3 = new Scanner(file3);
-		
-		Map<Integer, Persons> map = new HashMap<Integer, Persons>();
-		
-		for (int i=0; i<map.size(); ++i){
-			map.put(Persons)
-		}
-//Commit Test 1
+		this.persons = FileReader.importData(PERSON_FILE);
+		this.customers = FileReader.importData(CUSTOMER_FILE);
+		this.products = FileReader.importData(PRODUCT_FILE);
 			   
 	}
-	
-	public void read
 }
