@@ -1,4 +1,5 @@
 package com.github.bhottovy.dataconverter;
+import java.io.FileNotFoundException;
 import java.util.Map;
 
 import com.github.bhottovy.dataconverter.person.Customer;
@@ -11,7 +12,7 @@ public class DataConverter {
 	public static final String CUSTOMER_FILE = "data/Customers.dat";
 	public static final String PRODUCT_FILE = "data/Products.dat";
 	
-	public static void main (String args[]) {
+	public static void main (String args[]) throws FileNotFoundException {
 		
 		Map<Person, String> persons = FileReader.importPersons(PERSON_FILE);
 		Map<Customer, String> customers = FileReader.importCustomers(CUSTOMER_FILE);
