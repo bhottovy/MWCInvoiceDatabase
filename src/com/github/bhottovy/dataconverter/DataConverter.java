@@ -12,7 +12,7 @@ public class DataConverter {
 	public static final String CUSTOMER_FILE = "data/Customers.dat";
 	public static final String PRODUCT_FILE = "data/Products.dat";
 	
-	public static void main (String args[]) throws FileNotFoundException {
+	public static void main (String args[]) {
 		
 		Map<Person, String> persons = FileReader.importPersons(PERSON_FILE);
 		Map<Customer, String> customers = FileReader.importCustomers(CUSTOMER_FILE);

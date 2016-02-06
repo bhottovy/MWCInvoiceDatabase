@@ -16,15 +16,21 @@ public class FileReader {
 		
 		Map<Person, String> map = new HashMap<Person, String>();
 		
-		File file = new File(fileName);
-		Scanner input = new Scanner(file);
-		
-		int count = input.nextInt();
-		input.useDelimiter(";");
-		input.nextLine();
-		
-		System.out.print(input.next());
-		System.out.print(input.next());
+		try {
+			File file = new File(fileName);
+			Scanner input = new Scanner(file);
+			
+			int count = input.nextInt();
+			input.useDelimiter(";");
+			input.nextLine();
+			
+			System.out.print(input.next());
+			System.out.print(input.next());
+			
+			input.close();
+		} catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		
 		return map;
 	}
@@ -33,8 +39,14 @@ public class FileReader {
 		
 		Map<Customer, String> map = new HashMap<Customer, String>();
 		
-		File file = new File(fileName);
-		Scanner input = new Scanner(file);
+		try {
+			File file = new File(fileName);
+			Scanner input = new Scanner(file);
+			
+			input.close();
+		} catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		
 		return map;
 	}
@@ -43,8 +55,14 @@ public class FileReader {
 	
 		Map<Product, String> map = new HashMap<Product, String>();
 		
-		File file = new File(fileName);
-		Scanner input = new Scanner(file);
+		try {
+			File file = new File(fileName);
+			Scanner input = new Scanner(file);
+			
+			input.close();
+		} catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		
 		return map;
 	}
