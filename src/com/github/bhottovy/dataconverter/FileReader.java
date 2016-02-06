@@ -22,10 +22,18 @@ public class FileReader {
 			
 			int count = input.nextInt();
 			input.useDelimiter(";");
-			input.nextLine();
 			
-			System.out.print(input.next());
-			System.out.print(input.next());
+			String personCode;
+			String lastName;
+			
+			for(int i=0;i<count;++i){
+				personCode = input.nextLine();
+				input.useDelimiter(",");
+				lastName = input.next();
+				firstName = input.next();
+				System.out.print(lastName);
+				
+			}
 			
 			input.close();
 		} catch(FileNotFoundException e) {
