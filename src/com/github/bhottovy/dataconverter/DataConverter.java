@@ -19,9 +19,9 @@ public class DataConverter {
 	
 	public static void main (String args[]) {
 		
-		this.persons = FileReader.importData(PERSON_FILE);
-		this.customers = FileReader.importData(CUSTOMER_FILE);
-		this.products = FileReader.importData(PRODUCT_FILE);
+		this.persons = FileReader.importPersons(PERSON_FILE);
+		this.customers = FileReader.importCustomers(CUSTOMER_FILE);
+		this.products = FileReader.importProducts(PRODUCT_FILE);
 			   
 	}
 }
