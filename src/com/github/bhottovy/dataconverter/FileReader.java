@@ -3,173 +3,168 @@ package com.github.bhottovy.dataconverter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 import com.github.bhottovy.dataconverter.information.Address;
+import com.github.bhottovy.dataconverter.person.BusinessCustomer;
 import com.github.bhottovy.dataconverter.person.Customer;
 import com.github.bhottovy.dataconverter.person.Person;
-import com.github.bhottovy.dataconverter.product.Product;
+import com.github.bhottovy.dataconverter.person.Persons;
+import com.github.bhottovy.dataconverter.person.ResidentialCustomer;
 
 public class FileReader {
 
-	public static Map<String, Person> importPersons(String fileName) throws FileNotFoundException {
+	public static ArrayList<Person> importPersons(String fileName) {
 		
-		Map<String, Person> map = new HashMap<String, Person>();
+		ArrayList<Person> list = new ArrayList<Person>();
 		
+		//Attempt to open file and read contents.
 		try {
-			File file = new File(fileName);
+			File file = new File(fileName + ".dat");
 			Scanner input = new Scanner(file);
 			
+			//Get the number of Persons in the file, then read every line.
 			int count = input.nextInt();
 			input.nextLine();
 			
-			for(int i=0;i<count;++i){
-				String personCode;
+			for(int i = 0; i < count; i++){
+				//Strings for all of the Person's information
+				String code;
 				
-				ArrayList<String> emails = new ArrayList<String>();
-				
+				String tempName;
+				String[] fullName;
 				String firstName;
 				String lastName;
+				
+				String tempAddress;
+				String[] fullAddress;
 				String street;
 				String city;
 				String state;
 				String zip;
-				String Country;
+				String country;
 				
-				String nameHolder;
-				String[] fullName;
-				String emailHolder;
+				String tempEmail;
 				String[] emailList;
-				String addressHolder;
-				String[] fullAddress;
+				ArrayList<String> emails = new ArrayList<String>();
 				
+				//Read everything on an entire line.
 				input.useDelimiter(";");
-				personCode = input.next();
-				nameHolder = input.next();
-				addressHolder = input.next();
-				int e = 0;
-				emailHolder = input.nextLine();
+				code = input.next();
+				tempName = input.next();
+				tempAddress = input.next();
+				tempEmail = input.nextLine().substring(1);
 				
-				fullName = nameHolder.split(",");
+				//Split the full email string into seperate emails, then add to the List.
+				emailList = tempEmail.split(",");
+				for(String email : emailList) {
+					emails.add(email.trim());
+				}
+				
+				//Split the full name into first and last.
+				fullName = tempName.split(",");
 				firstName = fullName[0].trim();
 				lastName = fullName[1].trim();
 				
-				fullAddress = addressHolder.split(",");
+				//Split the address into its parts, create Address object.
+				fullAddress = tempAddress.split(",");
 				street = fullAddress[0].trim();
 				city = fullAddress[1].trim();
 				state = fullAddress[2].trim();
 				zip = fullAddress[3].trim();
-				Country = fullAddress[4].trim();
+				country = fullAddress[4].trim();
+				Address address = new Address(street, city, state, zip, country);
 				
-				Address address = new Address(street, city, state, zip, Country);
-				Person person = new Person(personCode, firstName, lastName, address);
-				
-				// Add the person to the map
-				/*
-				email = email.substring(1, email.length());
-				
-				while(input.hasNext()){
-					++e;
-				}
-				
-				for(int z = 0;z<e;++z){
-					emailList.add(input.next());
-				}
-					*/
-				map.put(person.getCode(), person);	
+				//Create a Person object with all the details, then add to list.
+				Person person = new Person(code, address, emails, firstName, lastName);
+				list.add(person);		
 			}
 			
+			//Finally, close the file reader.
 			input.close();
 		} catch(FileNotFoundException e) {
+			//File could not be opened. Print the stack trace.
 			e.printStackTrace();
 		}
 		
-		return map;
+		//Return the list of Persons. If empty or file could not be read, will return null;
+		return list;
 	}
-	
-	public static Map<Customer, String> importCustomers(String fileName) throws FileNotFoundException {
+
+	public static ArrayList<Customer> importCustomers(Persons personList, String fileName) {
 		
-		Map<Customer, String> map = new HashMap<Customer, String>();
+		ArrayList<Customer> list = new ArrayList<Customer>();
 		
+		//Attempt to open file and read contents.
 		try {
-			File file = new File(fileName);
+			File file = new File(fileName + ".dat");
 			Scanner input = new Scanner(file);
 			
+			//Get the number of Customers in the file, then read every line.
 			int count = input.nextInt();
 			input.nextLine();
 			
-			for(int i=0;i<count;++i){
-				String personCode;
-				String customerCode;
+			for(int i = 0; i < count; i++){
+				//Strings for all of the Customer's information
+				String code;
+				String type;
 				
-				String customerType;
+				String contactCode;
+				Person contact = null;
 				
-				ArrayList<String> emails = new ArrayList<String>();
+				String name;
 				
-				String firstName;
-				String lastName;
+				String tempAddress;
+				String[] fullAddress;
 				String street;
 				String city;
 				String state;
 				String zip;
-				String Country;
+				String country;
 				
-				String nameHolder;
-				String[] fullName;
-				String emailHolder;
-				String[] emailList;
-				String addressHolder;
-				String[] fullAddress;
-				
-				int e = 0;
-				int j = 0;
+				//Read everything on an entire line.
 				input.useDelimiter(";");
-				customerCode = input.next();
-				customerType = input.next();
-				personCode = input.next();
+				code = input.next();
+				type = input.next();
+				contactCode = input.next();
 				name = input.next();
-				address = input.nextLine();
 				
-				nameHolder = name.split(",");
-				name = nameHolder[j].trim();
+				//Using contact code, get the Person from list of People.
+				contact = personList.getPersonFromCode(contactCode);
 				
-				addressHolder = address.split(",");
-				street = addressHolder[j].trim();
-				city = addressHolder[j+1].trim();
-				state = addressHolder[j+2].trim();
-				zip = addressHolder[j+3].trim();
-				Country = addressHolder[j+4].trim();
+				tempAddress = input.nextLine();
 				
-				Address custAddress = new Address(street, city, state, zip, Country);
-				Customer newCustomer = new Customer(personCode, customerCode, firstName, lastName, custAddress);
-				// Add the new customer to the map
-
-				System.out.println(name);	
+				//Split the address into its parts, create Address object.
+				fullAddress = tempAddress.split(",");
+				street = fullAddress[0].trim();
+				city = fullAddress[1].trim();
+				state = fullAddress[2].trim();
+				zip = fullAddress[3].trim();
+				country = fullAddress[4].trim();
+				Address address = new Address(street, city, state, zip, country);
+				
+				//Using type, create a Business or Residential Customer object.
+				Customer customer = null;
+				if(type.equalsIgnoreCase("b")) {
+					customer = new BusinessCustomer(code, address, name, contact);
+				} else if(type.equalsIgnoreCase("r")) {
+					customer = new ResidentialCustomer(code, address, name, contact);
+				} else {
+					System.out.println("Invalid customer! Type needed.");
+				}
+				
+				//If customer was created successfully, add to list. Otherwise don't.
+				if(customer != null) list.add(customer);		
 			}
 			
+			//Finally, close the file reader.
 			input.close();
 		} catch(FileNotFoundException e) {
+			//File could not be opened. Print the stack trace.
 			e.printStackTrace();
 		}
 		
-		return map;
-	}
-
-	public static Map<Product, String> importProducts(String fileName) throws FileNotFoundException {
-	
-		Map<Product, String> map = new HashMap<Product, String>();
-		
-		try {
-			File file = new File(fileName);
-			Scanner input = new Scanner(file);
-			
-			input.close();
-		} catch(FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-		return map;
+		//Return the list of Customers. If empty or file could not be read, will return null;
+		return list;
 	}
 }

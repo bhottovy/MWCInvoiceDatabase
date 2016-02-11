@@ -3,31 +3,40 @@ package com.github.bhottovy.dataconverter.person;
 import java.util.ArrayList;
 
 import com.github.bhottovy.dataconverter.information.Address;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 
-public class Person {
-
-    private String personCode;
+@XStreamAlias("person")
+public class Person extends Contact {
     
-    private String name;
-    private Address address;
+	//A Person's name is split into a first and last part.
+    private String firstName;
+    private String lastName;
     
-    private ArrayList<String> email = new ArrayList<String>();
+    //A Person also has a list of emails.
+    private ArrayList<String> email;
     
-    public Person(String code, String name, Address address) {
-        this.personCode = code;
-        this.name = name;
-        this.address = address;
+    public Person(String code, Address address, ArrayList<String> email, String firstName, String lastName) {
+    	super(code, address);
+    	
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
     }
 
-    public String getCode() {
-        return this.personCode;
-    }
-    
+    @Override
     public String getName() {
-        return this.name;
+    	return this.firstName + " " + this.lastName;
     }
     
-    public Address getAddress() {
-        return this.address;
+    public String getFirstName() {
+    	return this.firstName;
+    }
+    
+    public String getLastName() {
+    	return this.lastName;
+    }
+    
+    public ArrayList<String> getEmails() {
+    	return this.email;
     }
 }

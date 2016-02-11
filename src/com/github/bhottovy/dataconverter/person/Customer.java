@@ -2,18 +2,27 @@ package com.github.bhottovy.dataconverter.person;
 
 import com.github.bhottovy.dataconverter.information.Address;
 
-public class Customer extends Person {
+public abstract class Customer extends Contact {
 
-	private String customerCode;
-	private String type;
+	//Customers are both People and Businesses, so their names do not have a first and last part.
+	private String name;
 	
-	public Customer(String personCode, String customerCode, String name, Address address, String type) {
-		super(personCode, name, address);
-		this.customerCode = customerCode;
-		this.type = type;
+	//Customers also have a primary contact, which is a person.
+	private Person contact;
+	
+	public Customer(String code, Address address, String name, Person contact) {
+		super(code, address);
+		
+		this.name = name;
+		this.contact = contact;
 	}
 
-	public String getCode() {
-		return this.customerCode;
+	@Override
+	public String getName() {
+		return this.name;
+	}
+	
+	public Person getContact() {
+		return this.contact;
 	}
 }

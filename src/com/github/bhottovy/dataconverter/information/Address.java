@@ -2,6 +2,8 @@ package com.github.bhottovy.dataconverter.information;
 
 public class Address {
 	
+	//Address is an object that contains all the information for a Contact.
+	
 	private String street;
 	private String city;
 	private String state;

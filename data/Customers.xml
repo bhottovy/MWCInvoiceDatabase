@@ -1,0 +1,164 @@
+<?xml version="1.0" ?>
+<customers>
+  <com.github.bhottovy.dataconverter.person.BusinessCustomer>
+    <code>C001</code>
+    <address>
+      <street>;259 Avery Hall</street>
+      <city>Lincoln</city>
+      <state>NE</state>
+      <zip>68588</zip>
+      <country>USA</country>
+    </address>
+    <name>University of Nebraska-Lincoln</name>
+    <contact>
+      <code>231</code>
+      <address>
+        <street>1 Blue Jays Way</street>
+        <city>Toronto</city>
+        <state>ON</state>
+        <zip>M5V 1J1</zip>
+        <country>Canada</country>
+      </address>
+      <firstName>Earl</firstName>
+      <lastName>Holley</lastName>
+      <email>
+        <string>famousholl@who.com</string>
+        <string>hearl@cse.unl.edu</string>
+        <string>holleyearl@whovian.com</string>
+        <string>earl12@bbc.com</string>
+      </email>
+    </contact>
+  </com.github.bhottovy.dataconverter.person.BusinessCustomer>
+  <com.github.bhottovy.dataconverter.person.BusinessCustomer>
+    <code>C002</code>
+    <address>
+      <street>;912 E Kirwin Ave</street>
+      <city>Salina</city>
+      <state>KS</state>
+      <zip>67401</zip>
+      <country>USA</country>
+    </address>
+    <name>Stark Industries</name>
+    <contact>
+      <code>944c</code>
+      <address>
+        <street>1060 West Addison Street</street>
+        <city>Chicago</city>
+        <state>IL</state>
+        <zip>60613</zip>
+        <country>USA</country>
+      </address>
+      <firstName>McCoy</firstName>
+      <lastName>Sylvester</lastName>
+      <email>
+        <string>smccoy@cubs.com</string>
+        <string>sylve_mccoy13@gmail.com</string>
+      </email>
+    </contact>
+  </com.github.bhottovy.dataconverter.person.BusinessCustomer>
+  <com.github.bhottovy.dataconverter.person.ResidentialCustomer>
+    <code>C003</code>
+    <address>
+      <street>;1182 James Ave N</street>
+      <city>Minneapolis</city>
+      <state>MN</state>
+      <zip>55411</zip>
+      <country>USA</country>
+    </address>
+    <name>Tom Eddision</name>
+    <contact>
+      <code>306a</code>
+      <address>
+        <street>123 N 1st Street</street>
+        <city>Omaha</city>
+        <state>NE</state>
+        <zip>68116</zip>
+        <country>USA</country>
+      </address>
+      <firstName>Pertwee</firstName>
+      <lastName>Jon</lastName>
+      <email>
+        <string>j_pertwee@gmail.com</string>
+        <string>jon@venture.com</string>
+      </email>
+    </contact>
+  </com.github.bhottovy.dataconverter.person.ResidentialCustomer>
+  <com.github.bhottovy.dataconverter.person.BusinessCustomer>
+    <code>C004</code>
+    <address>
+      <street>;151 Easton Ave</street>
+      <city>Waterloo</city>
+      <state>IA</state>
+      <zip>50702</zip>
+      <country>USA</country>
+    </address>
+    <name>National Soccer Administration</name>
+    <contact>
+      <code>321f</code>
+      <address>
+        <street>321 Bronx Street</street>
+        <city>New York</city>
+        <state>NY</state>
+        <zip>10004</zip>
+        <country>USA</country>
+      </address>
+      <firstName>Sampson</firstName>
+      <lastName>Brock</lastName>
+      <email>
+        <string></string>
+      </email>
+    </contact>
+  </com.github.bhottovy.dataconverter.person.BusinessCustomer>
+  <com.github.bhottovy.dataconverter.person.ResidentialCustomer>
+    <code>C005</code>
+    <address>
+      <street>;1060 West Addison</street>
+      <city>Chicago</city>
+      <state>IL</state>
+      <zip>60601</zip>
+      <country>USA</country>
+    </address>
+    <name>Vandelay Apartments</name>
+    <contact>
+      <code>bbchar</code>
+      <address>
+        <street>800 West 7th Street</street>
+        <city>Albuquerque</city>
+        <state>NM</state>
+        <zip>87105</zip>
+        <country>USA</country>
+      </address>
+      <firstName>Tennant</firstName>
+      <lastName>Kaylee</lastName>
+      <email>
+        <string></string>
+      </email>
+    </contact>
+  </com.github.bhottovy.dataconverter.person.ResidentialCustomer>
+  <com.github.bhottovy.dataconverter.person.ResidentialCustomer>
+    <code>C006</code>
+    <address>
+      <street>;456 West 7th St.</street>
+      <city>Omaha</city>
+      <state>NE</state>
+      <zip>68500</zip>
+      <country>USA</country>
+    </address>
+    <name>Mr. Smith&apos;s #1 Supply Co. Inc.</name>
+    <contact>
+      <code>321dr</code>
+      <address>
+        <street>Avery Hall</street>
+        <city>Lincoln</city>
+        <state>NE</state>
+        <zip>68503</zip>
+        <country>USA</country>
+      </address>
+      <firstName>Baker</firstName>
+      <lastName>Samantha</lastName>
+      <email>
+        <string>sb@baker.com</string>
+      </email>
+    </contact>
+  </com.github.bhottovy.dataconverter.person.ResidentialCustomer>
+</customers>
