@@ -6,27 +6,25 @@ import com.github.bhottovy.dataconverter.information.Address;
 
 public class Person {
 
-    private String code;
+    private String personCode;
     
-    private String firstName;
-    private String lastName;
+    private String name;
     private Address address;
     
-    private ArrayList<String> emailList = new ArrayList<String>();
+    private ArrayList<String> email = new ArrayList<String>();
     
-    public Person(String code, String firstName, String lastName, Address address) {
-        this.code = code;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Person(String code, String name, Address address) {
+        this.personCode = code;
+        this.name = name;
         this.address = address;
     }
 
     public String getCode() {
-        return this.code;
+        return this.personCode;
     }
     
     public String getName() {
-        return firstName + " " + lastName;
+        return this.name;
     }
     
     public Address getAddress() {

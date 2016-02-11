@@ -4,8 +4,16 @@ import com.github.bhottovy.dataconverter.information.Address;
 
 public class Customer extends Person {
 
-	public Customer(String code, String firstName, String lastName, Address address) {
-		super(code, firstName, lastName, address);
+	private String customerCode;
+	private String type;
+	
+	public Customer(String personCode, String customerCode, String name, Address address, String type) {
+		super(personCode, name, address);
+		this.customerCode = customerCode;
+		this.type = type;
 	}
 
+	public String getCode() {
+		return this.customerCode;
+	}
 }

@@ -14,21 +14,21 @@ public class DataConverter {
 	
 	public static void main (String args[]) {
 
-		Map<Person, String> persons = null;
-		Map<Customer, String> customers = null;
-		Map<Product, String> products = null;
+		Map<String, Person> persons = null;
+		Map<String, Customer> customers = null;
+		Map<String, Product> products = null;
 		
 		try {
 			persons = FileReader.importPersons(PERSON_FILE);
-			customers = FileReader.importCustomers(CUSTOMER_FILE);
-			products = FileReader.importProducts(PRODUCT_FILE);
+			//customers = FileReader.importCustomers(CUSTOMER_FILE);
+			//products = FileReader.importProducts(PRODUCT_FILE);
 		} catch(FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		
-		if(persons != null && customers != null && products != null) {
-			FileWriter.exportJSON(persons, customers, products);
-			FileWriter.exportXML(persons, customers, products);
+		if(persons != null) {
+			FileExport.exportJSON(persons, customers, products);
+			FileExport.exportXML(persons, customers, products);
 			System.out.println("Success!");
 		} else {
 			System.out.println("Error! Something went wrong.");
