@@ -36,7 +36,7 @@ public class FileExport {
 		XStream xstream = new XStream();
 		
 		//Process annotations in list objects.
-		xstream.processAnnotations(object.getClass());
+		xstream.autodetectAnnotations(true);
 		String xml = xstream.toXML(object);
 
 		//Attempt to write to file.

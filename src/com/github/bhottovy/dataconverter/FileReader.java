@@ -11,6 +11,10 @@ import com.github.bhottovy.dataconverter.person.Customer;
 import com.github.bhottovy.dataconverter.person.Person;
 import com.github.bhottovy.dataconverter.person.Persons;
 import com.github.bhottovy.dataconverter.person.ResidentialCustomer;
+import com.github.bhottovy.dataconverter.product.Consultation;
+import com.github.bhottovy.dataconverter.product.Equipment;
+import com.github.bhottovy.dataconverter.product.Product;
+import com.github.bhottovy.dataconverter.product.Service;
 
 public class FileReader {
 
@@ -145,9 +149,9 @@ public class FileReader {
 				
 				//Using type, create a Business or Residential Customer object.
 				Customer customer = null;
-				if(type.equalsIgnoreCase("b")) {
+				if(type.equalsIgnoreCase("b")) { //Business Customer
 					customer = new BusinessCustomer(code, address, name, contact);
-				} else if(type.equalsIgnoreCase("r")) {
+				} else if(type.equalsIgnoreCase("r")) { //Residential Customer
 					customer = new ResidentialCustomer(code, address, name, contact);
 				} else {
 					System.out.println("Invalid customer! Type needed.");
@@ -165,6 +169,85 @@ public class FileReader {
 		}
 		
 		//Return the list of Customers. If empty or file could not be read, will return null;
+		return list;
+	}
+	
+	public static ArrayList<Product> importProducts(Persons personList, String fileName) {
+		
+		ArrayList<Product> list = new ArrayList<Product>();
+		
+		//Attempt to open file and read contents.
+		try {
+			File file = new File(fileName + ".dat");
+			Scanner input = new Scanner(file);
+			
+			//Get the number of Products in the file, then read every line.
+			int count = input.nextInt();
+			input.nextLine();
+			
+			for(int i = 0; i < count; i++){
+				//Strings for all of the Product's information
+				String productCode;
+				String type;
+				String productName;
+				
+				input.useDelimiter(";");
+				productCode = input.next();
+				type = input.next();
+				productName = input.next();
+				
+				//Using type, create a product of the correct type.
+				Product product = null;
+				if(type.equalsIgnoreCase("e")) { //Equipment
+					
+					double unitPrice;
+					
+					//Attempt to get unitPrice from last part. Skip ';' and trim whitespace.
+					unitPrice = Double.parseDouble(input.nextLine().substring(1).trim());
+					
+					product = new Equipment(productCode, productName, unitPrice);
+				} else if(type.equalsIgnoreCase("s")) { //Service
+					
+					double activationFee;
+					double annualFee;
+					
+					//Attempt to get both fees from the remaining two strings.
+					activationFee = Double.parseDouble(input.next().trim());
+					annualFee = Double.parseDouble(input.nextLine().substring(1).trim());
+					
+					product = new Service(productCode, productName, activationFee, annualFee);
+				} else if(type.equalsIgnoreCase("c")) { //Consultation
+					
+					String personCode;
+					double hourlyCost;
+					
+					Person consultant = null;
+					
+					personCode = input.next();
+					
+					//Attempt to get hourly cost from the remaining string.
+					hourlyCost = Double.parseDouble(input.nextLine().substring(1).trim());
+					
+					//Using person code, get the Consultant from list of People.
+					consultant = personList.getPersonFromCode(personCode);
+					
+					product = new Consultation(productCode, productName, hourlyCost, consultant);
+				} else {
+					System.out.println("Invalid product! Type needed.");
+				}
+				
+				//If product was created successfully, add to list. Otherwise don't.
+				if(product != null) list.add(product);		
+			}
+			
+			//Finally, close the file reader.
+			input.close();
+		} catch(FileNotFoundException e) {
+			//File could not be opened. Print the stack trace.
+			e.printStackTrace();
+		}
+		
+		//Return the list of Products. If empty or file could not be read, will return null;
 		return list;
 	}
 }

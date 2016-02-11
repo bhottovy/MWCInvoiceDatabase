@@ -1,0 +1,83 @@
+{
+  "products": [
+    {
+      "unitPrice": 2500.0,
+      "productCode": "b29e",
+      "productName": "Satellite Reciever"
+    },
+    {
+      "unitPrice": 124.99,
+      "productCode": "ff23",
+      "productName": "Wireless5G Router"
+    },
+    {
+      "unitPrice": 63.99,
+      "productCode": "fp12",
+      "productName": "Netgear DSL Modem"
+    },
+    {
+      "unitPrice": 200.0,
+      "productCode": "1239",
+      "productName": "Digital Setup Box"
+    },
+    {
+      "activationFee": 2000.0,
+      "annualFee": 12000.0,
+      "productCode": "90fa",
+      "productName": "Long Distance Service"
+    },
+    {
+      "hourlyCost": 25.0,
+      "consultant": {
+        "firstName": "Gekko",
+        "lastName": "Gordon",
+        "email": [
+          "gekko@crazy.net"
+        ],
+        "code": "aef1",
+        "address": {
+          "street": "1 Wall Street",
+          "city": "New York",
+          "state": "NY",
+          "zip": "10005-0012",
+          "country": "USA"
+        }
+      },
+      "productCode": "3289",
+      "productName": "Turbo Upgrade-Internet"
+    },
+    {
+      "hourlyCost": 150.0,
+      "consultant": {
+        "firstName": "Thotroy",
+        "lastName": "William",
+        "email": [
+          "willth@doctors.com",
+          "wth@who.com"
+        ],
+        "code": "321nd",
+        "address": {
+          "street": "1060 West Addison Street",
+          "city": "Chicago",
+          "state": "IL",
+          "zip": "60613",
+          "country": "USA"
+        }
+      },
+      "productCode": "782g",
+      "productName": "Home Wifi Setup"
+    },
+    {
+      "activationFee": 0.0,
+      "annualFee": 35000.0,
+      "productCode": "3294",
+      "productName": "L2 Home Security"
+    },
+    {
+      "activationFee": 350.0,
+      "annualFee": 1200.0,
+      "productCode": "3295",
+      "productName": "Domain registration"
+    }
+  ]
+}

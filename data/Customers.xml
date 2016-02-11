@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <customers>
-  <com.github.bhottovy.dataconverter.person.BusinessCustomer>
+  <business>
     <code>C001</code>
     <address>
       <street>;259 Avery Hall</street>
@@ -28,8 +28,8 @@
         <string>earl12@bbc.com</string>
       </email>
     </contact>
-  </com.github.bhottovy.dataconverter.person.BusinessCustomer>
-  <com.github.bhottovy.dataconverter.person.BusinessCustomer>
+  </business>
+  <business>
     <code>C002</code>
     <address>
       <street>;912 E Kirwin Ave</street>
@@ -55,8 +55,8 @@
         <string>sylve_mccoy13@gmail.com</string>
       </email>
     </contact>
-  </com.github.bhottovy.dataconverter.person.BusinessCustomer>
-  <com.github.bhottovy.dataconverter.person.ResidentialCustomer>
+  </business>
+  <residential>
     <code>C003</code>
     <address>
       <street>;1182 James Ave N</street>
@@ -82,8 +82,8 @@
         <string>jon@venture.com</string>
       </email>
     </contact>
-  </com.github.bhottovy.dataconverter.person.ResidentialCustomer>
-  <com.github.bhottovy.dataconverter.person.BusinessCustomer>
+  </residential>
+  <business>
     <code>C004</code>
     <address>
       <street>;151 Easton Ave</street>
@@ -108,8 +108,8 @@
         <string></string>
       </email>
     </contact>
-  </com.github.bhottovy.dataconverter.person.BusinessCustomer>
-  <com.github.bhottovy.dataconverter.person.ResidentialCustomer>
+  </business>
+  <residential>
     <code>C005</code>
     <address>
       <street>;1060 West Addison</street>
@@ -134,8 +134,8 @@
         <string></string>
       </email>
     </contact>
-  </com.github.bhottovy.dataconverter.person.ResidentialCustomer>
-  <com.github.bhottovy.dataconverter.person.ResidentialCustomer>
+  </residential>
+  <residential>
     <code>C006</code>
     <address>
       <street>;456 West 7th St.</street>
@@ -160,5 +160,5 @@
         <string>sb@baker.com</string>
       </email>
     </contact>
-  </com.github.bhottovy.dataconverter.person.ResidentialCustomer>
+  </residential>
 </customers>
