@@ -3,7 +3,7 @@ package com.github.bhottovy.dataconverter.person;
 import com.github.bhottovy.dataconverter.information.Address;
 
 public abstract class Customer extends Contact {
-
+	
 	//Customers are both People and Businesses, so their names do not have a first and last part.
 	private String name;
 	

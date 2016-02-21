@@ -10,4 +10,8 @@ public class BusinessCustomer extends Customer {
 		super(code, address, name, contact);
 	}
 
+	@Override
+	public String getCode() {
+		return this.code;
+	}
 }
