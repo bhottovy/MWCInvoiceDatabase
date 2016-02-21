@@ -17,7 +17,7 @@ import com.github.bhottovy.dataconverter.product.Product;
 import com.github.bhottovy.dataconverter.product.Service;
 
 public class FileReader {
-
+	
 	public static ArrayList<Person> importPersons(String fileName) {
 		
 		ArrayList<Person> list = new ArrayList<Person>();
