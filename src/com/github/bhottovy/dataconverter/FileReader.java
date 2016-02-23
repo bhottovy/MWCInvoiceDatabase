@@ -6,15 +6,20 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.github.bhottovy.dataconverter.information.Address;
+import com.github.bhottovy.dataconverter.information.Invoice;
 import com.github.bhottovy.dataconverter.person.BusinessCustomer;
 import com.github.bhottovy.dataconverter.person.Customer;
+import com.github.bhottovy.dataconverter.person.Customers;
 import com.github.bhottovy.dataconverter.person.Person;
 import com.github.bhottovy.dataconverter.person.Persons;
 import com.github.bhottovy.dataconverter.person.ResidentialCustomer;
 import com.github.bhottovy.dataconverter.product.Consultation;
 import com.github.bhottovy.dataconverter.product.Equipment;
 import com.github.bhottovy.dataconverter.product.Product;
+import com.github.bhottovy.dataconverter.product.Products;
+import com.github.bhottovy.dataconverter.product.SellableProduct.ProductType;
 import com.github.bhottovy.dataconverter.product.Service;
+import com.github.bhottovy.dataconverter.product.SoldProduct;
 
 public class FileReader {
 	
@@ -238,6 +243,87 @@ public class FileReader {
 				
 				//If product was created successfully, add to list. Otherwise don't.
 				if(product != null) list.add(product);		
+			}
+			
+			//Finally, close the file reader.
+			input.close();
+		} catch(FileNotFoundException e) {
+			//File could not be opened. Print the stack trace.
+			e.printStackTrace();
+		}
+		
+		//Return the list of Products. If empty or file could not be read, will return null;
+		return list;
+	}
+	//TODO SETUP importInvoices
+	public static ArrayList<Invoice> importInvoices(Persons personList, Products productList, Customers customerList, String fileName) {
+		
+		ArrayList<Invoice> list = new ArrayList<Invoice>();
+		
+		//Attempt to open file and read contents.
+		try {
+			File file = new File(fileName + ".dat");
+			Scanner input = new Scanner(file);
+			
+			//Get the number of Invoices in the file, then read every line.
+			int count = input.nextInt();
+			input.nextLine();
+			
+			for(int i = 0; i < count; i++){
+				//Strings for all of the Invoice's information
+				String invoiceCode;
+				
+				String customerCode;
+				String date;
+				String sellerCode;
+				
+				String tempProducts;
+				String[] products;
+				ArrayList<SoldProduct> soldProducts = new ArrayList<SoldProduct>();
+				
+				input.useDelimiter(";");
+				invoiceCode = input.next();
+				customerCode = input.next();
+				date = input.next();
+				sellerCode = input.next();
+				tempProducts = input.nextLine().substring(1).trim();
+				
+				Customer customer = null;
+				
+				//Get the customer using their code.
+				customer = customerList.getCustomerFromCode(customerCode);
+				
+				Person salesPerson = null;
+				
+				//Using salesperson code, get the SalesPerson from list of People.
+				salesPerson = personList.getPersonFromCode(sellerCode);
+				
+				//Split the full product string into separate products and dates/amounts/hours.
+				products = tempProducts.split(",");
+				for(String line : products) {
+					String productParts[] = line.split(":");
+					String productCode;
+					
+					productCode = productParts[0];
+					
+					Product product = productList.getProductFromCode(productCode);
+					if(product != null) {
+						switch((ProductType)product.getType()) {
+							case PRODUCT_TYPE_EQUIPMENT:
+								soldProducts.add(new SoldProduct(product, Integer.parseInt(productParts[1])));
+								break;
+							case PRODUCT_TYPE_SERVICE:
+								soldProducts.add(new SoldProduct(product, productParts[1], productParts[2]));
+								break;
+							case PRODUCT_TYPE_CONSULTATION:
+								soldProducts.add(new SoldProduct(product, Integer.parseInt(productParts[1])));
+								break;
+						}
+					}
+				}
+				
+				Invoice invoice = new Invoice(invoiceCode, customer, date, soldProducts, salesPerson);
+				list.add(invoice);				
 			}
 			
 			//Finally, close the file reader.

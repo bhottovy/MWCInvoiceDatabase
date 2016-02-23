@@ -6,7 +6,7 @@ import com.github.bhottovy.dataconverter.information.Address;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 @XStreamAlias("person")
-public class Person extends Contact implements PersonCode {
+public class Person extends Contact {
     
 	//A Person's name is split into a first and last part.
     private String firstName;
@@ -39,9 +39,4 @@ public class Person extends Contact implements PersonCode {
     public ArrayList<String> getEmails() {
     	return this.email;
     }
-
-	@Override
-	public String getCode() {
-		return this.code;
-	}
 }

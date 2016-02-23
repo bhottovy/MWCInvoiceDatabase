@@ -9,9 +9,4 @@ public class BusinessCustomer extends Customer {
 	public BusinessCustomer(String code, Address address, String name, Person contact) {
 		super(code, address, name, contact);
 	}
-
-	@Override
-	public String getCode() {
-		return this.code;
-	}
 }

@@ -1,7 +1,6 @@
 package com.github.bhottovy.invoice;
 
 import com.github.bhottovy.dataconverter.FileReader;
-import com.github.bhottovy.dataconverter.information.Invoice;
 import com.github.bhottovy.dataconverter.information.Invoices;
 import com.github.bhottovy.dataconverter.person.Customers;
 import com.github.bhottovy.dataconverter.person.Persons;
@@ -29,8 +28,9 @@ public class InvoiceReport {
 		persons.setList(FileReader.importPersons(PERSON_FILE));
 		customers.setList(FileReader.importCustomers(persons, CUSTOMER_FILE));
 		products.setList(FileReader.importProducts(persons, PRODUCT_FILE));
-		//invoices.setList(FileReader.importInvoices(INVOICE_FILE));
+		invoices.setList(FileReader.importInvoices(persons, products, customers, INVOICE_FILE));
 		
+		//After collecting all the Invoices from the file, print a report.
 		InvoicePrinter.printReport(invoices);
 	}
 }

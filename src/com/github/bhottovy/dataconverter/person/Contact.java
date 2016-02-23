@@ -2,7 +2,7 @@ package com.github.bhottovy.dataconverter.person;
 
 import com.github.bhottovy.dataconverter.information.Address;
 
-public abstract class Contact implements PersonCode {
+public abstract class Contact {
 	
 	//All contacts have their own code, address, 
 	
@@ -20,4 +20,8 @@ public abstract class Contact implements PersonCode {
     }
     
     public abstract String getName();
+    
+    public String getCode() {
+    	return this.code;
+    }
 }

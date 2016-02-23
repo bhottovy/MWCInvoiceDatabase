@@ -19,4 +19,14 @@ public class Customers {
 	public ArrayList<Customer> getList() {
 		return this.customers;
 	}
+	
+	public Customer getCustomerFromCode(String code) {
+		for(Customer customer : this.customers) {
+			if(customer.getCode().equalsIgnoreCase(code)) {
+				return customer;
+			}
+		}
+		
+		return null;
+	}
 }

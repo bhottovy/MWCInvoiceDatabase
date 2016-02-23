@@ -9,14 +9,24 @@ import com.thoughtworks.xstream.annotations.XStreamImplicit;
 public class Products {
 	
 	//Contains list of Product objects.
-		@XStreamImplicit
-		private ArrayList<Product> products;
-		
-		public void setList(ArrayList<Product> products) {
-			this.products = products;
+	@XStreamImplicit
+	private ArrayList<Product> products;
+	
+	public void setList(ArrayList<Product> products) {
+		this.products = products;
+	}
+	
+	public ArrayList<Product> getList() {
+		return this.products;
+	}
+	
+	public Product getProductFromCode(String code) {
+		for(Product product : this.products) {
+			if(product.getCode().equalsIgnoreCase(code)) {
+				return product;
+			}
 		}
 		
-		public ArrayList<Product> getList() {
-			return this.products;
-		}
+		return null;
+	}
 }
