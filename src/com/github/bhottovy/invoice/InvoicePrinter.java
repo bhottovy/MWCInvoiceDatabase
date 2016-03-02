@@ -48,22 +48,22 @@ public class InvoicePrinter {
 			System.out.printf("%-8s %-40s %-30s %s %9.2f %2s %10.2f %2s %10.2f %2s %9.2f %n",invoicePH, customerPH, salespersonPH,"$",costPH,"$",costPH,"$",costPH,"$",costPH);
 
 			if (i==numOfInvoices-1){
-				System.out.println("=====================================================================================================================================");
+				System.out.println(format3);
 				System.out.printf("%-80s %s %9.2f %2s %10.2f %2s %10.2f %2s %9.2f %n","TOTALS","$",costPH,"$",costPH,"$",costPH,"$",costPH);
 			}
 		}
 		System.out.printf("%n %n");
-		System.out.println("=================================");
+		System.out.println(format1);
 		System.out.println("INVOICE DETAIL REPORTS");
-		System.out.println("=================================");
+		System.out.println(format1);
 		System.out.println("");
 
 		for(int i=0; i<numOfInvoices;++i){
 			System.out.println("");
-			System.out.println("----------------------------------");
+			System.out.println(format4);
 			System.out.println("Invoice:" + invoicePH);
 			System.out.println("Date:" + datePH);
-			System.out.println("----------------------------------");
+			System.out.println(format4);
 			System.out.println("Salesperson: " + salespersonPH);
 			System.out.println("Customer:");
 			System.out.println("	" + customerPH + " (" + customerCodePH + ")");
@@ -71,10 +71,10 @@ public class InvoicePrinter {
 			System.out.println("	[" + personPH + "]");
 			System.out.println("	" + addressPH);
 			System.out.println("	" + cityStatePH);
-			System.out.println("----------------------------------");
+			System.out.println(format4);
 			System.out.printf("%-8s %-61s %7s %11s %12s %12s %n","Code","Item","Subtotal","Taxes","Fees","Total");
 			for(int j=0;j<numOfProducts; ++j){
-				System.out.printf("%-9s %-57s %s %9.2f %1s %9.2f %1s %10.2f %n",customerCodePH,itemPH,"$",costPH,"$",costPH,"$",costPH,"$",costPH,"$");
+				System.out.printf("%-8s %-58s %s %9.2f %1s %9.2f %1s %10.2f %n",customerCodePH,itemPH,"$",costPH,"$",costPH,"$",costPH,"$",costPH,"$");
 				if (j==numOfProducts-1){
 					System.out.printf("%117s",format2);
 					System.out.printf("%-68s %s %9.2f %1s %9.2f %1s %10.2f %s %10.2f %n","\nSUB-TOTALS","$",costPH,"$",costPH,"$",costPH,"$",costPH);
