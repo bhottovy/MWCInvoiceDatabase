@@ -1,6 +1,9 @@
 package com.github.bhottovy.dataconverter.product;
 
+import java.time.temporal.ChronoUnit;
+
 import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.joda.time.Period;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
@@ -37,6 +40,6 @@ public class Service extends Product {
 	}
 	
 	public static int getDays(DateTime startDate, DateTime endDate) {
-		return new Period(startDate, endDate).getDays();
+		return Days.daysBetween(startDate, endDate).getDays();
 	}
 }

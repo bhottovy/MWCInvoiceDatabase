@@ -56,17 +56,17 @@ public class SoldProduct implements SellableProduct {
 
 	public void calcTotals() {
 		
+		//This will calculate all the values for the product.
 		switch(type) {
 			case PRODUCT_TYPE_EQUIPMENT:
 				Equipment equipment = (Equipment)this.product;
 				this.subTotal = equipment.getUnitPrice() * this.unitsSold;
 				this.taxes = equipment.getTaxes(this.subTotal);
-				System.out.println(subTotal+" "+taxes);
 				break;
 			case PRODUCT_TYPE_SERVICE:
 				Service service = (Service)this.product;
 				int days = Service.getDays(startDate, endDate);
-				this.subTotal = (service.getAnnualFee() / 365.0) * days;
+				this.subTotal = (service.getAnnualFee() * days) / 365.0;
 				this.taxes = service.getTaxes(this.subTotal);
 				this.fees = service.getActivationFee();
 				break;
@@ -102,5 +102,9 @@ public class SoldProduct implements SellableProduct {
 	
 	public double getFees() {
 		return this.fees;
+	}
+	
+	public Product getProduct() {
+		return this.product;
 	}
 }

@@ -255,7 +255,7 @@ public class FileReader {
 		//Return the list of Products. If empty or file could not be read, will return null;
 		return list;
 	}
-	//TODO SETUP importInvoices
+
 	public static ArrayList<Invoice> importInvoices(Persons personList, Products productList, Customers customerList, String fileName) {
 		
 		ArrayList<Invoice> list = new ArrayList<Invoice>();
@@ -306,6 +306,7 @@ public class FileReader {
 					
 					productCode = productParts[0];
 					
+					//Create a SoldProduct from the product and its type.
 					Product product = productList.getProductFromCode(productCode);
 					if(product != null) {
 						switch((ProductType)product.getType()) {
@@ -322,6 +323,7 @@ public class FileReader {
 					}
 				}
 				
+				//Create a new invoice, and add it to the list of invoices.
 				Invoice invoice = new Invoice(invoiceCode, customer, date, soldProducts, salesPerson);
 				list.add(invoice);				
 			}
