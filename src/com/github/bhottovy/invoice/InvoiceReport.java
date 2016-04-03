@@ -22,7 +22,6 @@ public class InvoiceReport {
 		Persons persons = new Persons();
 		Customers customers = new Customers();
 		Products products = new Products();
-		Invoices invoices = new Invoices();
 		
 		//FileReader takes a file-name as an input, and returns a list of Objects in return from the file.
 		persons.setList(FileReader.importPersons(PERSON_FILE));

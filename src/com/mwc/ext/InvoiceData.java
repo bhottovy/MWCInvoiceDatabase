@@ -1,5 +1,10 @@
 package com.mwc.ext;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+
+import com.github.bhottovy.database.DatabaseInfo;
+
 /* NOTE: Donot change the package name or any of the method signatures.
  *  
  * There are 14 methods in total, all of which need to be completed as a 
@@ -22,12 +27,47 @@ public class InvoiceData {
 	/**Method that removes every person record from the database. 
 	 */
 	public static void removeAllPersons() {
-}
+		
+		String query = "DELETE";
+		Connection conn = DatabaseInfo.getConnection();
+		
+		try {
+			PreparedStatement ps = conn.getPreparedStatement(query);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	/**Method to add a person record to the database with the provided data. 
 	 */
 	public static void addPerson(String personCode, String firstName, String lastName, 
-			String street, String city, String state, String zip, String country) {}
+			String street, String city, String state, String zip, String country) {
+		
+		Connection conn = DatabaseInfo.getConnection();
+		
+		try {
+			PreparedStatement ps = conn.getPreparedStatement(query);
+			ps.setString(1, name);
+			ps.setString(2, firstName);
+			ps.setString(3, lastName);
+			
+			int contactID = ;
+			
+			String insertQuery = "INSERT INTO Person (ContactID, FirstName, LastName) Values (? ? ?)";
+			ps = conn.getPreparedStatement(query);
+			ps.setString(1, contactID);
+			ps.setString(2, firstName);
+			ps.setString(3, lastName);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			rs.next();
+			conn.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	/**Method to add an email record to the database with the associated personCode. 
 	 */
@@ -96,5 +136,5 @@ public class InvoiceData {
 	 * number of billable hours.)
 	 */
 	public static void addConsultationToInvoice(String invoiceCode, String productCode, double numHours) {
-		}
+	}
 }
