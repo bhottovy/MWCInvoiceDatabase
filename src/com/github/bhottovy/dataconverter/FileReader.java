@@ -297,7 +297,7 @@ public class FileReader {
 				
 				//Using salesperson code, get the SalesPerson from list of People.
 				salesPerson = personList.getPersonFromCode(sellerCode);
-
+				
 				//Split the full product string into separate products and dates/amounts/hours.
 				products = tempProducts.split(",");
 				for(String line : products) {

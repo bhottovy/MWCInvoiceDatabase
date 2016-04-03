@@ -24,7 +24,6 @@ public class Invoice {
 		this.customer = customer;
 		this.date = DateTime.parse(date);
 		this.products = products;
-		this.salesPerson = salesPerson;
 	}
 	
 	public String getCode() {
