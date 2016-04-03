@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 public class DatabaseInfo {
 
+	//DatabaseInfo
 	public static final String url = "jdbc:mysql://cse.unl.edu/YOURLOGIN";
 	public static final String username = "YOURLOGIN";
 	public static final String password = "YOURSQLPASSWORD";
