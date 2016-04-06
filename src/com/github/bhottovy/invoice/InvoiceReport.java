@@ -8,7 +8,7 @@ import com.github.bhottovy.dataconverter.product.Products;
 
 public class InvoiceReport {
 
-	//Use constants for data file names.
+	//Use constants for data file names
 	public static final String FOLDER_NAME = "data/";
 		
 	public static final String PERSON_FILE = FOLDER_NAME + "Persons";
@@ -22,6 +22,7 @@ public class InvoiceReport {
 		Persons persons = new Persons();
 		Customers customers = new Customers();
 		Products products = new Products();
+		Invoices invoices = new Invoices();
 		
 		//FileReader takes a file-name as an input, and returns a list of Objects in return from the file.
 		persons.setList(FileReader.importPersons(PERSON_FILE));

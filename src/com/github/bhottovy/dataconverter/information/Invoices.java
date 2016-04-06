@@ -9,7 +9,7 @@ import com.thoughtworks.xstream.annotations.XStreamImplicit;
 public class Invoices {
 	//Contains list of Invoices objects.
 		@XStreamImplicit
-		private ArrayList<Invoice> invoices;
+		private InvoiceList<Invoice> invoices;
 		
 		public void setList(ArrayList<Invoice> invoices) {
 			this.invoices = invoices;
