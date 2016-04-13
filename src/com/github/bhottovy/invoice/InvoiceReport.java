@@ -1,10 +1,12 @@
 package com.github.bhottovy.invoice;
 
-import com.github.bhottovy.dataconverter.FileReader;
+import com.github.bhottovy.database.DatabaseReader;
+import com.github.bhottovy.dataconverter.information.Invoice;
 import com.github.bhottovy.dataconverter.information.Invoices;
 import com.github.bhottovy.dataconverter.person.Customers;
 import com.github.bhottovy.dataconverter.person.Persons;
 import com.github.bhottovy.dataconverter.product.Products;
+import com.github.bhottovy.dataconverter.product.SoldProduct;
 
 public class InvoiceReport {
 
@@ -25,10 +27,12 @@ public class InvoiceReport {
 		Invoices invoices = new Invoices();
 		
 		//FileReader takes a file-name as an input, and returns a list of Objects in return from the file.
-		persons.setList(FileReader.importPersons(PERSON_FILE));
-		customers.setList(FileReader.importCustomers(persons, CUSTOMER_FILE));
-		products.setList(FileReader.importProducts(persons, PRODUCT_FILE));
-		invoices.setList(FileReader.importInvoices(persons, products, customers, INVOICE_FILE));
+		persons.setList(DatabaseReader.importPersons());
+		customers.setList(DatabaseReader.importCustomers(persons.getList()));
+		products.setList(DatabaseReader.importProducts(persons.getList()));
+		invoices.setList(DatabaseReader.importInvoices(persons.getList(), customers.getList(), products.getList()));
+		
+		InvoiceList list = invoices.getList();
 		
 		//After collecting all the Invoices from the file, print a report.
 		InvoicePrinter.printReport(invoices);

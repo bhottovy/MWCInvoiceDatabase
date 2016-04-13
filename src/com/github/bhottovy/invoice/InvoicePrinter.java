@@ -1,4 +1,5 @@
 package com.github.bhottovy.invoice;
+
 import com.github.bhottovy.dataconverter.information.Invoice;
 import com.github.bhottovy.dataconverter.information.Invoices;
 import com.github.bhottovy.dataconverter.person.BusinessCustomer;
@@ -6,6 +7,7 @@ import com.github.bhottovy.dataconverter.person.ResidentialCustomer;
 import com.github.bhottovy.dataconverter.product.SoldProduct;
 
 public class InvoicePrinter {
+	
 	public static final String INVOICE_FILE = InvoiceReport.FOLDER_NAME + "Invoices";
 
 	public static void printReport(Invoices invoices) {
@@ -24,7 +26,9 @@ public class InvoicePrinter {
 		double totalFees = 0;
 		double finalTotal = 0;
 		double compfee = 0;
-		for(Invoice invoiceA : invoices.getList()){
+		
+		//TODO CHANGE THIS
+		/*for(Invoice invoiceA : invoices.getList()){
 			
 			String invoicePH = invoiceA.getCode();
 			String customerPH = invoiceA.getCustomer().getName();
@@ -50,7 +54,7 @@ public class InvoicePrinter {
 			finalTotal += total;
 			System.out.printf("%-8s %-40s %-30s %s %9.2f %2s %10.2f %2s %10.2f %2s %9.2f %n",invoicePH, customerPH, salespersonName,"$", subtotal,"$", fees,"$",taxes,"$", total);
 			
-		}
+		}*/
 		System.out.println(lineFormat3);
 		System.out.printf("%-80s %s %9.2f %2s %10.2f %2s %10.2f %2s %9.2f %n","TOTALS","$",totalSubtotal,"$",totalFees,"$",totalTaxes,"$",finalTotal);
 		
@@ -59,6 +63,8 @@ public class InvoicePrinter {
 		System.out.println("INVOICE DETAIL REPORTS");
 		System.out.println(lineFormat1);
 
+		//TODO CHANGE THIS
+		/*
 		for(Invoice invoiceB : invoices.getList()){
 			
 			double subtotal = 0;
@@ -107,6 +113,6 @@ public class InvoicePrinter {
 			System.out.printf("%-68s %s %9.2f %1s %9.2f %1s %10.2f %s %10.2f %n","\nSUB-TOTALS","$",subtotal,"$",taxes,"$",fees,"$",finaltotal);
 			System.out.printf("%-104s %s %10.2f %n","COMPLIANCE FEE","$",compfee);
 			System.out.printf("%-104s %s %10.2f %n %n","FINAL TOTAL","$",compfee + finaltotal);
-		}
+		}*/
 	}
 }

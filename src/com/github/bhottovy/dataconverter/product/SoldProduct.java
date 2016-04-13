@@ -103,4 +103,8 @@ public class SoldProduct implements SellableProduct {
 	public double getFees() {
 		return this.fees;
 	}
+	
+	public Product getProduct() {
+		return this.product;
+	}
 }

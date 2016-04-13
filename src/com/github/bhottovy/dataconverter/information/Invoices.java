@@ -1,21 +1,21 @@
 package com.github.bhottovy.dataconverter.information;
 
-import java.util.ArrayList;
-
+import com.github.bhottovy.invoice.InvoiceList;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
 
 @XStreamAlias("invoices")
 public class Invoices {
 	//Contains list of Invoices objects.
-		@XStreamImplicit
-		private InvoiceList<Invoice> invoices;
-		
-		public void setList(ArrayList<Invoice> invoices) {
-			this.invoices = invoices;
-		}
-		
-		public ArrayList<Invoice> getList() {
-			return this.invoices;
-		}
+	
+	@XStreamImplicit
+	private InvoiceList invoices;
+	
+	public void setList(InvoiceList invoices) {
+		this.invoices = invoices;
+	}
+	
+	public InvoiceList getList() {
+		return this.invoices;
+	}
 }

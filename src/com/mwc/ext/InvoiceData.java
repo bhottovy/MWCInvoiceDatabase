@@ -28,12 +28,16 @@ public class InvoiceData {
 	/**Method that removes every person record from the database. 
 	 */
 	public static void removeAllPersons() {
-		String query_delete_all_persons = "DELETE FROM Person;"
-				+ "ALTER TABLE Person AUTO_INCREMENT = 1";
+		String query_delete_all_persons = "DELETE FROM Person;";
+		String query_reset_increment = "ALTER TABLE Person AUTO_INCREMENT = 1;";
 		Connection conn = DatabaseInfo.getConnection();
 		
 		try {
 			PreparedStatement ps = conn.prepareStatement(query_delete_all_persons);
+			
+			ps.executeUpdate();
+			
+			ps = conn.prepareStatement(query_reset_increment);
 			
 			ps.executeUpdate();
 			
@@ -95,17 +99,28 @@ public class InvoiceData {
 		
 		try {
 			InvoiceData.addAddress(street, city, state, zip, country);
-			String query_get_address_id = "SELECT LAST_INSERT_ID()";
+			String query_get_address_id = "SELECT AddressID FROM Address ORDER BY AddressID DESC LIMIT 1;";
 			
 			PreparedStatement ps = conn.prepareStatement(query_get_address_id);
 			
 			ResultSet rs = ps.executeQuery();
-			InvoiceData.addContact(personCode, rs.getInt("AddressID"));
-			String query_get_contact_id = "(SELECT LAST_INSERT_ID())";
+			rs.next();
+			
+			int addressID = rs.getInt("AddressID");
+			
+			InvoiceData.addContact(personCode, addressID);
+			String query_get_contact_id = "SELECT ContactID FROM Contact ORDER BY ContactID DESC LIMIT 1;";
+			
+			ps = conn.prepareStatement(query_get_contact_id);
+			rs = ps.executeQuery();
+			rs.next();
+			
+			int contactID = rs.getInt("ContactID");
+			
 			rs.close();
 			
 			ps = conn.prepareStatement(query_add_person);
-			ps.setString(1, query_get_contact_id);
+			ps.setInt(1, contactID);
 			ps.setString(2, firstName);
 			ps.setString(3, lastName);
 			
@@ -143,12 +158,16 @@ public class InvoiceData {
 	}
 	
 	public static void removeAllCustomers() {
-		String query_delete_all_customers = "DELETE FROM Customer;"
-				+ "ALTER TABLE Customer AUTO_INCREMENT = 1";
+		String query_delete_all_customers = "DELETE FROM Customer;";
+		String query_reset_increment = "ALTER TABLE Customer AUTO_INCREMENT = 1;";
 		Connection conn = DatabaseInfo.getConnection();
 		
 		try {
 			PreparedStatement ps = conn.prepareStatement(query_delete_all_customers);
+			
+			ps.executeUpdate();
+			
+			ps = conn.prepareStatement(query_reset_increment);
 			
 			ps.executeUpdate();
 			
@@ -305,12 +324,16 @@ public class InvoiceData {
 	/**Removes all invoice records from the database. 
 	 */
 	public static void removeAllInvoices() {
-		String query_delete_all_invoices = "DELETE FROM Invoice;"
-				+ "ALTER TABLE Invoice AUTO_INCREMENT = 1";
+		String query_delete_all_invoices = "DELETE FROM Invoice;";
+		String query_reset_increment = "ALTER TABLE Invoice AUTO_INCREMENT = 1;";
 		Connection conn = DatabaseInfo.getConnection();
 		
 		try {
 			PreparedStatement ps = conn.prepareStatement(query_delete_all_invoices);
+			
+			ps.executeUpdate();
+			
+			ps = conn.prepareStatement(query_reset_increment);
 			
 			ps.executeUpdate();
 			
